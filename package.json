@@ -1,0 +1,22 @@
+{
+  "name": "cruise-ships",
+  "version": "1.0.0",
+  "description": "cruise-ships project, Manchester Codes",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/MaggieTheCoder/cruise-ships.git"
+  },
+  "author": "Maggie du Randt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaggieTheCoder/cruise-ships/issues"
+  },
+  "homepage": "https://github.com/MaggieTheCoder/cruise-ships#readme",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
