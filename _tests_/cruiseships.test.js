@@ -7,8 +7,13 @@ describe("Ship constructor", () => {
   });
 
   //
-  it("to have a starting portt", () => {
+  it("to have a starting port", () => {
     const ship = new Ship("Bristol");
     expect(ship.startingPort).toBe("Bristol");
   });
+
+  it("can set sail", () => {});
+  const shipTheodora = new Ship("Dover");
+  shipTheodora.setSail();
+  expect(shipTheodora.setSail()).toBeFalsy();
 });
