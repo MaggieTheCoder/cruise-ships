@@ -9,11 +9,23 @@ describe("Ship constructor", () => {
     let durban;
     let itinerary;
     beforeEach(() => {
-       liverpool = new Port("Liverpool");
-       durban = new Port("Durban");
-       itinerary = new Itinerary([liverpool, durban]);
-       ship = new Ship(itinerary);
+      liverpool = { 
+        addShip: jest.fn(),
+        removeShip: jest.fn(),
+        name: 'liverpool',
+        ships: []
+      };
+      durban = {
+        addShip: jest.fn(),
+        removeShip: jest.fn(),
+        name: 'durban',
+        ships: []
+      };
+    itinerary = new Itinerary([liverpool, durban]);
+    ship = new Ship(itinerary);
+
     });
+
     it("returns an object", () => {
       // const port = new Port("Dover");
       // const itinerary = new Itinerary([port]);
@@ -39,21 +51,21 @@ describe("Ship constructor", () => {
       
       expect(ship.currentPort).toBeFalsy();
       expect(ship.previousPort).toBe(liverpool);
-      expect(liverpool.ships).not.toContain(ship);
+      expect(liverpool.removeShip).toHaveBeenCalledWith(ship);
   
     });
 
     it("can dock at a different port", () => {
-      // const felixstowe = new Port("Felixstowe");
-      // const capetown = new Port("Cape Town");
-      // const itinerary = new Itinerary([felixstowe, capetown]);
-      // const ship = new Ship(itinerary);
-  
       ship.setSail();
       ship.dock();
   
       expect(ship.currentPort).toBe(durban);
-      expect(durban.ships).toContain(ship);
+      expect(durban.addShip).toHaveBeenCalledWith(ship);
+    });
+
+    it('adds ship to port on instatiation', () => {
+     
+      expect(liverpool.addShip).toHaveBeenCalledWith(ship);
     });
 
   });
@@ -69,12 +81,5 @@ describe("Ship constructor", () => {
     ship.dock();
   
     expect(() => ship.setSail()).toThrowError('End of itinerary reached');
-  });
-
-  it('adds ship to port on instatiation', () => {
-    const dover = new Port('Dover');
-    const itinerary = new Itinerary([dover]);
-    const ship = new Ship(itinerary);
-    expect(dover.ships).toContain(ship);
   });
 });

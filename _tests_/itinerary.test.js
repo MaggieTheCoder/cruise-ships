@@ -8,8 +8,8 @@ describe("itinerary object", () => {
   });
 
   it("checks if itinerary has ports", () => {
-    const tees = new Port("Tees");
-    const calais = new Port("Calais");
+    const tees = jest.fn();
+    const calais = jest.fn();
     const itinerary = new Itinerary([tees, calais]);
     expect(itinerary.ports).toEqual([tees, calais]);
   });

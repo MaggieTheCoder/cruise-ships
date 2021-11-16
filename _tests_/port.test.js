@@ -9,7 +9,7 @@ describe("Port constructor", () => {
     
    beforeEach(() => {
     port = new Port('Bristol')
-    ship = {}; 
+    ship = jest.fn(); 
    });
 
     it("returns an object", () => {
@@ -31,7 +31,7 @@ describe("Port constructor", () => {
     it('removes a ship from the port', () => {
       // const port = new Port('Bath')
       // const ship = {}
-      const shipTwo = {}
+      const shipTwo = jest.fn();
       port.addShip(ship)
       port.addShip(shipTwo)
       port.removeShip(ship)
