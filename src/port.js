@@ -1,23 +1,22 @@
-const Ship = require("./cruiseships");
-
-class Port {
-  constructor(name) {
-    this.name = name;
-    this.ships = [];
-  }
-
-  addShip(ship) {
-    this.ships.push(ship)
-
-  };
-
-  removeShip(ship) {
-    const indexOfShip = this.ships.indexOf(ship); //this gives you the index of the ship in the array
-    this.ships.splice(indexOfShip, 1)
-      };
+(function exportPort() {
+  class Port {
+    constructor(name) {
+      this.name = name;
+      this.ships = [];
     }
 
-  
+    addShip(ship) {
+      this.ships.push(ship);
+    }
 
+    removeShip(ship) {
+      this.ships = this.ships.filter(dockedShip => dockedShip !== ship);
+    }
+  }
 
-module.exports = Port;
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Port;
+  } else {
+    window.Port = Port;
+  }
+}());
