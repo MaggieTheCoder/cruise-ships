@@ -30,3 +30,32 @@ body {
    height: 32px;
    background-image: url('../images/port.png')
 } 
+
+#ship {
+    background-image: url(../images/ship.png);
+    height: 64px;
+    width: 128px;
+    position: absolute;
+
+}
+
+#sailbutton {
+    border: 0px;
+    background-color: #ff6a00;
+    border-bottom: 4px solid #be68be;
+    color: #000;
+    font-family: inherit;
+    font-family: 'Estonia', cursive;
+    padding: 10px 20px;
+    position:absolute;
+    bottom:0px;
+    left: 0;
+    width: 100%;
+
+}
+
+#sailbutton:focus {
+    background-color: #05aa6d;
+    border-bottom-width: 0;
+    padding-top: 14px;
+}

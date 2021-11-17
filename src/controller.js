@@ -1,8 +1,40 @@
 (function exportController() {
     class Controller {
-    constructor() {
+    constructor(ship) {
+        this.ship = ship;
         this.initialiseSea();
+
+        document.querySelector('#sailbutton').addEventListener('click', () => {
+            this.setSail();
+        });
+        
     }
+
+    setSail() {
+        const ship = this.ship;
+        const currentPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+        const nextPortIndex = currentPortIndex + 1;
+        const nextPortElement = document.querySelector(`[data-port-index= '${nextPortIndex}']`)
+
+        const shipElement = document.querySelector('#ship');
+        const sailInterval = setInterval(() => {
+            const shipLeft = parseInt(shipElement.style.left, 10);
+            if (shipLeft === (nextPortElement.offsetLeft - 32)) {
+                ship.setSail();
+                ship.doc();
+                clearInterval(sailInterval)
+            }
+            shipElement.style.left = `${shipLeft +1}px` ;
+    
+        }, 20);
+
+        const nextPortElement = document.querySelector(`[data-port-index='${nextPortIndex}']`);
+
+if (!nextPortElement) {
+  return alert('End of the line!');
+}
+    }
+
     initialiseSea() {
         window.setInterval(() => {
         const backgrounds = [
@@ -29,6 +61,18 @@
             const portElementWidth = parseInt(portsElement.style.width, 10);
             portsElement.style.width = `${portElementWidth + 256}px`;
         })
+
+    }
+
+    renderShip() {
+        const ship = this.ship;
+        const shipPortIndex = ship.itinerary.ports.indexOf(ship.currentPort);
+        const portElement = document.querySelector(`[data-port-index='${shipPortIndex}']`);
+        const shipElement = document.querySelector('#ship');
+        shipElement.style.top = `${portElement.offsetTop}px`;
+        shipElement.style.left = `${portElement.offsetLeft}px`;
+        shipElement.style.top = `${portElement.offsetTop + 32}px`;
+        shipElement.style.left = `${portElement.offsetLeft - 32}px`;
 
     }
 }
